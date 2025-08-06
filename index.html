@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cycling Companion App</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Header / Navbar -->
+    <header>
+      <h1>Cycling Companion App</h1>
+      <nav>
+        <button data-page="checklist">Checklist</button>
+        <button data-page="route">Route Tracker</button>
+        <button data-page="motivation">Motivation</button>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Checklist Page -->
+      <section id="page-checklist" class="page">
+        <h2>Checklist Persiapan Gowes</h2>
+        <div id="checklist-container">
+          <!-- Dynamic checklist items here -->
+        </div>
+        <button id="add-checklist-item">Tambah Item</button>
+        <div id="checklist-progress">
+          <!-- Progress bar here -->
+        </div>
+      </section>
+
+      <!-- Route Tracker Page -->
+      <section id="page-route" class="page hidden">
+        <h2>Catatan Rute Sepeda</h2>
+        <form id="route-form">
+          <input type="text" placeholder="Nama Rute" required />
+          <input type="number" placeholder="Jarak (km)" required />
+          <input type="time" placeholder="Durasi" required />
+          <input type="date" required />
+          <button type="submit">Tambah Rute</button>
+        </form>
+        <table id="route-table">
+          <thead>
+            <tr>
+              <th>Rute</th>
+              <th>Jarak (km)</th>
+              <th>Durasi</th>
+              <th>Tanggal</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Route entries here -->
+          </tbody>
+        </table>
+        <div id="route-summary">
+          <!-- Total jarak & durasi here -->
+        </div>
+      </section>
+
+      <!-- Motivation Page -->
+      <section id="page-motivation" class="page hidden">
+        <h2>Quotes Motivasi Bersepeda</h2>
+        <div id="quote-display">
+          <!-- Random quote shown here -->
+        </div>
+        <button id="get-quote">Dapatkan Motivasi!</button>
+        <form id="add-quote-form">
+          <input type="text" placeholder="Tambahkan quote baru" required />
+          <button type="submit">Tambah Quote</button>
+        </form>
+      </section>
+    </main>
+
+    <!-- JS Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/checklist.js"></script>
+    <script src="js/routeTracker.js"></script>
+    <script src="js/motivation.js"></script>
+  </body>
+</html>
