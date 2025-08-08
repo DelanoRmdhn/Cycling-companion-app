@@ -41,7 +41,7 @@
       <section id="page-checklist" class="page">
         <h2>Checklist Persiapan Gowes</h2>
         <div id="checklist-container">
-          <table class="checklist-table table table-hover">
+          <table class="checklist-table table table-hover mb-5">
             <thead class="text-center">
               <tr>
                 <th>No.</th>
@@ -55,7 +55,33 @@
               </tr>
           </table>
         </div>
-        <button id="add-checklist-item">Tambah Item</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addItemModal" id="add-checklist-item">Tambah Item</button>
+        <button class="btn btn-success">Simpan Perubahan</button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="addItemModal" tabindex="-1" aria-labelledby="addItemModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header justify-content-center">
+        <h1 class="modal-title fs-5" id="addItemModalLabel">Tambah Barang</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="add-item-form">
+            <div class="mb-3">
+              <label for="item-name" class="form-label">Nama Barang</label>
+              <input type="text" class="form-control" id="item-name" placeholder="Masukkan nama barang">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" >Tambah!</button>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+
         <div id="checklist-progress">
           <!-- Progress bar here -->
         </div>

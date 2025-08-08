@@ -18,24 +18,55 @@ const itemStatus = document.querySelector(".checklist-item-status");
 const itemAction = document.querySelector(".checklist-item-action");
 
 //Logic
-allItems.forEach((items, index) => {
-  const tableRow = document.createElement("tr");
 
-  const itemNumber = document.createElement("th");
-  itemNumber.textContent = index + 1;
-  tableRow.appendChild(itemNumber);
+const showItem = function () {
+  tableBody.innerHTML = "";
+  allItems.forEach((items, index) => {
+    //reset
 
-  const item = document.createElement("td");
-  item.textContent = items.itemName;
-  tableRow.appendChild(item);
+    const tableRow = document.createElement("tr");
 
-  const preparation = document.createElement("td");
-  preparation.appendChild(itemStatus.content.cloneNode(true));
-  tableRow.appendChild(preparation);
+    const itemNumber = document.createElement("th");
+    itemNumber.textContent = index + 1;
+    tableRow.appendChild(itemNumber);
 
-  const deleteItem = document.createElement("td");
-  deleteItem.appendChild(itemAction.content.cloneNode(true));
-  tableRow.appendChild(deleteItem);
+    const item = document.createElement("td");
+    item.textContent = items.itemName;
+    tableRow.appendChild(item);
 
-  tableBody.appendChild(tableRow);
-});
+    const preparation = document.createElement("td");
+    preparation.appendChild(itemStatus.content.cloneNode(true));
+    tableRow.appendChild(preparation);
+
+    const deleteItem = document.createElement("td");
+    deleteItem.appendChild(itemAction.content.cloneNode(true));
+    tableRow.appendChild(deleteItem);
+
+    tableBody.appendChild(tableRow);
+  });
+};
+showItem();
+
+//Tambah Item
+const addItemForm = document.getElementById("add-item-form");
+
+function showAlertModal(item) {
+  if (item === "") {
+    alert("Harap Masukan Text!");
+  } else {
+    alert("Berhasil Menambah Item!");
+
+    allItems.push({ itemName: item });
+    showItem();
+    addItemForm.reset();
+  }
+}
+const addItem = function (e) {
+  e.preventDefault();
+
+  const item = document.getElementById("item-name").value.trim();
+
+  showAlertModal(item);
+};
+
+addItemForm.addEventListener("submit", addItem);
