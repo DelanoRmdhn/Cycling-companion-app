@@ -5,12 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cycling Companion App</title>
     <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"
+    />
   </head>
   <body>
+
+    <template class="checklist-item-status">
+      <!-- CHECKBOX -->
+      <div class="form-check d-flex justify-content-center align-items-center">
+        <input class="form-check-input" type="checkbox" value="" id="checkDefault">
+      </div>
+    </template>
+
+    <template class="checklist-item-action">
+      <button type="button" class="btn btn-danger">Hapus</button>
+    </template>
+
     <!-- Header / Navbar -->
     <header>
       <h1>Cycling Companion App</h1>
-      <nav>
+      <nav id="main-nav">
         <button data-page="checklist">Checklist</button>
         <button data-page="route">Route Tracker</button>
         <button data-page="motivation">Motivation</button>
@@ -20,10 +38,22 @@
     <!-- Main Content -->
     <main>
       <!-- Checklist Page -->
-      <section id="page-checklist" class="page hidden">
+      <section id="page-checklist" class="page">
         <h2>Checklist Persiapan Gowes</h2>
         <div id="checklist-container">
-          <!-- Dynamic checklist items here -->
+          <table class="checklist-table table table-hover">
+            <thead class="text-center">
+              <tr>
+                <th>No.</th>
+                <th>Nama Barang</th>
+                <th>Status Persiapan</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="table-body" class="text-center align-middle">
+              <tr>
+              </tr>
+          </table>
         </div>
         <button id="add-checklist-item">Tambah Item</button>
         <div id="checklist-progress">
@@ -75,6 +105,8 @@
     </main>
 
     <!-- JS Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+  </body>
     <script src="js/main.js"></script>
     <script src="js/checklist.js"></script>
     <script src="js/routeTracker.js"></script>
