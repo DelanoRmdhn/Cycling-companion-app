@@ -17,13 +17,17 @@ const tableBody = document.getElementById("table-body");
 const itemStatus = document.querySelector(".checklist-item-status");
 const itemAction = document.querySelector(".checklist-item-action");
 
-//Logic
-
-const showItem = function () {
+let countChecked;
+const startingCondition = function () {
   tableBody.innerHTML = "";
+  countChecked = 0;
+  const progressBar = document.querySelector(".progress-bar");
+  progressBar.style.width = "0%";
+  progressBar.textContent = "0%";
+};
+const showItem = function () {
+  startingCondition();
   allItems.forEach((items, index) => {
-    //reset
-
     const tableRow = document.createElement("tr");
 
     const itemNumber = document.createElement("th");
@@ -46,8 +50,9 @@ const showItem = function () {
   });
 };
 showItem();
-
+////////////////////////////
 //Tambah Item
+////////////////////////////
 const addItemForm = document.getElementById("add-item-form");
 
 function showAlertModal(item) {
@@ -61,6 +66,7 @@ function showAlertModal(item) {
     addItemForm.reset();
   }
 }
+
 const addItem = function (e) {
   e.preventDefault();
 
@@ -71,32 +77,56 @@ const addItem = function (e) {
 
 addItemForm.addEventListener("submit", addItem);
 
+////////////////////////////
 //Progressive progress bar
-const formCheck = document.querySelectorAll(".form-check");
+////////////////////////////
 
 const countProgressBar = function (checked) {
   const totalItems = allItems.length;
+  console.log(totalItems);
   const percentage = (checked / totalItems) * 100;
   return percentage;
 };
 
-let countChecked = 0;
-formCheck.forEach((checkbox) => {
-  checkbox.addEventListener("click", function () {
+tableBody.addEventListener("click", function (e) {
+  if (e.target.classList.contains("form-check-input")) {
+    const checkbox = e.target;
     checkbox.classList.toggle("checked");
+
     const progressBar = document.querySelector(".progress-bar");
+
     if (checkbox.classList.contains("checked")) {
       countChecked++;
-
-      const progressBarPercentage = countProgressBar(countChecked);
-
-      progressBar.style.width = `${progressBarPercentage}%`;
-      progressBar.textContent = `${progressBarPercentage} %`;
     } else {
       countChecked--;
-      const progressBarPercentage = countProgressBar(countChecked);
-      progressBar.style.width = `${progressBarPercentage}%`;
-      progressBar.textContent = `${progressBarPercentage} %`;
     }
-  });
+
+    const progressBarPercentage = countProgressBar(countChecked);
+    progressBar.style.width = `${progressBarPercentage}%`;
+    progressBar.textContent = `${progressBarPercentage.toFixed(0)} %`;
+  }
 });
+
+////////////////////////////
+//Hapus Item
+////////////////////////////
+const deleteItemBtn = document.querySelectorAll(".delete-item-btn");
+
+tableBody.addEventListener("click", function (e) {
+  if (e.target.classList.contains("delete-item-btn")) {
+    const row = e.target.closest("tr");
+    console.log(row);
+    const index = Array.from(tableBody.querySelectorAll("tr")).indexOf(row);
+    // console.log(index);
+    deleteItem(index);
+    showItem();
+  }
+});
+
+function deleteItem(index) {
+  for (index; index < allItems.length; index++) {
+    allItems[index] = allItems[index + 1];
+  }
+
+  allItems.length = allItems.length - 1;
+}
