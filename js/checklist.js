@@ -70,3 +70,33 @@ const addItem = function (e) {
 };
 
 addItemForm.addEventListener("submit", addItem);
+
+//Progressive progress bar
+const formCheck = document.querySelectorAll(".form-check");
+
+const countProgressBar = function (checked) {
+  const totalItems = allItems.length;
+  const percentage = (checked / totalItems) * 100;
+  return percentage;
+};
+
+let countChecked = 0;
+formCheck.forEach((checkbox) => {
+  checkbox.addEventListener("click", function () {
+    checkbox.classList.toggle("checked");
+    const progressBar = document.querySelector(".progress-bar");
+    if (checkbox.classList.contains("checked")) {
+      countChecked++;
+
+      const progressBarPercentage = countProgressBar(countChecked);
+
+      progressBar.style.width = `${progressBarPercentage}%`;
+      progressBar.textContent = `${progressBarPercentage} %`;
+    } else {
+      countChecked--;
+      const progressBarPercentage = countProgressBar(countChecked);
+      progressBar.style.width = `${progressBarPercentage}%`;
+      progressBar.textContent = `${progressBarPercentage} %`;
+    }
+  });
+});
